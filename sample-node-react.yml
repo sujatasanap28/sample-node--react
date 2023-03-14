@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-node-react
+  namespace: node-react
+  labels:
+    app: sample-node-react
+  # annotations:
+  #       prometheus.io/scrape: 'true'
+  #       prometheus.io/port: '9102'  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-node-react
+  template:
+    metadata:
+      labels:
+        app: sample-node-react  
+    spec:
+      containers:
+      - name: sample-node-react
+        image: sample-node-react:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3080
